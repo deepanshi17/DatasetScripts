@@ -1,0 +1,240 @@
+RootWidget:
+#:import Label kivy.uix.label.Label
+
+<RootWidget>:
+    screen_manager: screen_manager
+    ScreenManager:
+        id: screen_manager
+        current: 'main_menu'
+        pos: root.pos
+        size: root.size
+        MainMenu:
+            screen_manager: root
+            size: root.size
+            pos: root.pos
+        OtherMenu:
+            screen_manager: root
+            size: root.size
+            pos: root.pos
+        MergeMenu:
+            screen_manager: root
+            size: root.size
+            pos: root.pos
+
+<MainMenu>:
+    screen_manager: self.screen_manager
+    GridLayout:
+        cols: 2
+        Button:
+            text: 'Trim'
+            on_press: root.screen_manager.set_state(root.name, 1)
+
+        Button:
+            text: 'Merge'
+            on_press: root.screen_manager.set_state(root.name, 2)
+
+<OtherMenu>:
+    screen_manager: self.screen_manager
+    FloatLayout:
+        Label:
+            text: 'Filepath: '
+            size_hint: (.4, .2)
+            pos_hint: {'x': 0, 'y': .8}
+
+        TextInput:
+            id: filepath
+            pos_hint: {'x': .275, 'y': .875}
+            size_hint: .6,.05
+            multiline: False
+            font_size: 30
+            background_normal: ''
+            background_color: .85,0.34,.5,.9
+
+        Label:
+            text: '# of Frames: '
+            size_hint: (.4, .2)
+            pos_hint: {'x': 0, 'y': .7}
+
+        TextInput:
+            id: frame
+            size_hint: .6,.05
+            multiline: False
+            pos_hint: {'x': 0.275, 'y': .775}
+            font_size: 30
+            background_normal: ''
+            background_color: 1,0.3,0.4,0.85
+
+        Label:
+            text: 'Range: '
+            size_hint: (.4, .2)
+            pos_hint: {'x': 0, 'y': .6}
+
+        TextInput:
+            id: range_lower
+            size_hint: .05,.05
+            multiline: False
+            pos_hint: {'x': 0.275, 'y': .675}
+            font_size: 30
+            background_normal: ''
+            background_color: 0,0.8,0.7,.7
+
+        Label:
+            text: 'to'
+            size_hint: (.1, .1)
+            pos_hint: {'x': 0.3, 'y': .65}
+
+        TextInput:
+            id: range_higher
+            size_hint: .05,.05
+            multiline: False
+            pos_hint: {'x': 0.375, 'y': .675}
+            font_size: 30
+            background_normal: ''
+            background_color: 0,0.8,.7,.7
+
+        Label:
+            text: 'Output to: '
+            size_hint: (.4, .2)
+            pos_hint: {'x': 0, 'y': .5}
+
+        TextInput:
+            id: output
+            size_hint: .6,.05
+            multiline: False
+            pos_hint: {'x': 0.275, 'y': .575}
+            font_size: 30
+            background_normal: ''
+            background_color: 0.9,0.9,0.9,0.9
+
+
+        Button:
+            size_hint: .2,.05
+            pos_hint: {'x': 0.275, 'y': .375}
+            text: 'Trim'
+            on_press: root.screen_manager.trim(frame.text, filepath.text, output.text, range_lower.text, range_higher.text)
+            background_color: 0.8715,0.28,0.196,1
+
+        Button:
+            size_hint: .2,.05
+            pos_hint: {'x': 0.275, 'y': .275}
+            text: 'Back'
+            on_press: root.screen_manager.set_state(root.name, 0)
+            background_color: 1,0.9,1 ,1
+
+<MergeMenu>:
+    screen_manager: self.screen_manager
+    num: 0
+
+    FloatLayout:
+        Label:
+            text: '# of Files to Merge: '
+            size_hint: (.4, .2)
+            pos_hint: {'x': 0, 'y': .8}
+
+        TextInput:
+            id: num
+            pos_hint: {'x': 0.3, 'y': .875}
+            size_hint: .6,.05
+            multiline: False
+            font_size: 30
+            background_normal: ''
+            background_color: 0.854,0.7385,0.329,0.9
+
+        Label:
+            text: 'Path 1: '
+            size_hint: (.4, .2)
+            pos_hint: {'x': 0, 'y': .7}
+
+        TextInput:
+            id: path1
+            size_hint: .6,.05
+            multiline: False
+            pos_hint: {'x': 0.3, 'y': .775}
+            font_size: 30
+            background_normal: ''
+            background_color: .85,0.34,.5,.9
+
+        Label:
+            text: 'Path 2: '
+            size_hint: (.4, .2)
+            pos_hint: {'x': 0, 'y': .625}
+
+        TextInput:
+            id: path2
+            size_hint: .6,.05
+            multiline: False
+            pos_hint: {'x': 0.3, 'y': .7}
+            font_size: 30
+            background_normal: ''
+            background_color: 1,0.3,0.4,0.85
+
+        Label:
+            text: 'Path 3: '
+            size_hint: (.4, .2)
+            pos_hint: {'x': 0, 'y': .55}
+
+        TextInput:
+            id: path3
+            size_hint: .6,.05
+            multiline: False
+            pos_hint: {'x': 0.3, 'y': .625}
+            font_size: 30
+            background_normal: ''
+            background_color: 0,0.8,0.7,.7
+
+        Label:
+            text: 'Path4: '
+            size_hint: (.4, .2)
+            pos_hint: {'x': 0, 'y': .475}
+
+        TextInput:
+            id: path4
+            size_hint: .6,.05
+            multiline: False
+            pos_hint: {'x': 0.3, 'y': .55}
+            font_size: 30
+            background_normal: ''
+            background_color: 0.504,0.8435,0.8365,1
+
+        Label:
+            text: 'Path 5: '
+            size_hint: (.4, .2)
+            pos_hint: {'x': 0, 'y': .4}
+
+        TextInput:
+            id: path5
+            size_hint: .6,.05
+            multiline: False
+            pos_hint: {'x': 0.3, 'y': .475}
+            font_size: 30
+            background_normal: ''
+            background_color: .6755,0.8785,0.574,0.85
+
+        Label:
+            text: 'Output to: '
+            size_hint: (.4, .2)
+            pos_hint: {'x': 0, 'y': .25}
+
+        TextInput:
+            id: output
+            size_hint: .6,.05
+            multiline: False
+            pos_hint: {'x': 0.3, 'y': .325}
+            font_size: 30
+            background_normal: ''
+            background_color: 1,1,1,1
+
+
+        Button:
+            size_hint: .2,.05
+            pos_hint: {'x': 0.3, 'y': .175}
+            text: 'Merge'
+            on_press: root.screen_manager.merged(num.text, path1.text, path2.text, path3.text, path4.text, output.text)
+            background_color: 0.8715,0.28,0.196,1
+
+        Button:
+            size_hint: .2,.05
+            pos_hint: {'x': 0.3, 'y': .1}
+            text: 'Back'
+            on_press: root.screen_manager.set_state(root.name, 0)
+            background_color: 1,0.9,1 ,1
